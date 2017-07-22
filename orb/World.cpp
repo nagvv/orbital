@@ -11,39 +11,34 @@ int num=0;
 
 World::World()
 {
-	maxEnts=500;
-	World::sizeX=100;
-	this->sizeY=100;
-	ents = new Entity*[maxEnts];
-	for(int i=0;i<maxEnts;i++)
-			ents[i]=nullptr;
+	sizeX=100;
+	sizeY=100;
+	ents.reserve(10);
 }
 
 
 World::World(double sizeX, double sizeY)
 {
-	maxEnts=500;
-	World::sizeX=sizeX;
+	this->sizeX=sizeX;
 	this->sizeY=sizeY;
-	ents = new Entity*[maxEnts];
-	for(int i=0;i<maxEnts;i++)
-		ents[i]=nullptr;
+	ents.reserve(10);
 }
 World::~World()
 {
-	for(int i=0;i<maxEnts;i++)
-		{
-			if(ents[i]!=nullptr)
-			{
-				delete ents[i];
-			}
-		}
-	delete[] ents;
+	std::cout << "... The End." << std::endl;
 }
 
 void World::Tick()
 {
-	for(int i=0;i<maxEnts;i++)
+	for(auto i=ents.begin();i!=ents.end();i++)
+	{
+		if((*i!=nullptr))
+		{
+			if((*i)->isAlive())
+				(*i)->tick();
+		}
+	}
+	/*for(int i=0;i<maxEnts;i++)
 	{
 		if(ents[i]!=nullptr)
 		{
@@ -52,11 +47,11 @@ void World::Tick()
 				ents[i]->tick();
 			}
 		}
-	}
+	}*/
 }
 void World::addEntity()
 {
-	ents[num] = new Entity();
+	ents[num].reset(new Entity());//some troubles there
 	ents[num]->setAlive();
 	//ents[num]->setX(sizeX);
 	ents[num]->setY(sizeY/2);

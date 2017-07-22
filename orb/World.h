@@ -4,14 +4,17 @@
  *  Created on: 18 февр. 2017 г.
  *      Author: Алексей
  */
+
 #include "Entity.h"
+#include <vector>
+#include <memory>
+
 class World
 {
 private:
 	double sizeX, sizeY;
 public:
-	int maxEnts;
-	Entity **ents;
+	std::vector<std::shared_ptr<Entity>> ents;//
 
 public:
 	World(double,double);

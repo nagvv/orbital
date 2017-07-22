@@ -10,6 +10,8 @@
 #include <cmath>
 //#include <iostream>
 
+extern double speed;
+
 double Entity::getX()
 {
 	return x;
@@ -82,8 +84,8 @@ void Entity::tick()
 {
 	if(x*x+y*y>64)
 	{
-		xSpeed-=((4/(x*x+y*y))*(x/std::sqrt(x*x+y*y)));
-		ySpeed-=((4/(x*x+y*y))*(y/std::sqrt(x*x+y*y)));
+		xSpeed-=((speed/(x*x+y*y))*(x/std::sqrt(x*x+y*y)));
+		ySpeed-=((speed/(x*x+y*y))*(y/std::sqrt(x*x+y*y)));
 	}
 	x+=xSpeed;
 	y+=ySpeed;

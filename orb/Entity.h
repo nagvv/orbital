@@ -20,6 +20,7 @@ public:
 	void setXSpeed(double);
 	void setY(double);
 	void setYSpeed(double);
+
 	void addXSpeed(double);
 	void addYSpeed(double);
 	void tick();
