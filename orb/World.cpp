@@ -51,12 +51,10 @@ void World::Tick()
 }
 void World::addEntity()
 {
-	ents[num].reset(new Entity());//some troubles there
-	ents[num]->setAlive();
-	//ents[num]->setX(sizeX);
-	ents[num]->setY(sizeY/2);
-	//ents[num]->setXSpeed(-0.15);
-	num++;
+	std::shared_ptr<Entity> e(new Entity());
+	e->setAlive();
+	e->setY(sizeY/2);
+	ents.push_back(e);
 }
 
 

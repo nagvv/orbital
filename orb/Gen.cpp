@@ -27,18 +27,19 @@ void ticker(World& world, sf::RenderWindow* win)
 		//отрисовка
 		win->clear(sf::Color::White);
 		for(unsigned int i=0;i<world.ents.size();i++)
+		{
+			if(world.ents[i]!=nullptr)
 			{
-				if(world.ents[i]!=nullptr)
+				std::cout << i << " " << world.ents[i]->getY() << std::endl;
+				if(world.ents[i]->isAlive())
 				{
-					if(world.ents[i]->isAlive())
-					{
-						sf::CircleShape shape(10);
-						shape.setFillColor(sf::Color::Red);
-						shape.setPosition(center-shape.getRadius()+(int)((world.ents[i]->getX())*5),center-shape.getRadius()+(int)((world.ents[i]->getY())*5));
-						win->draw(shape);
-					}
+					sf::CircleShape shape(10);
+					shape.setFillColor(sf::Color::Red);
+					shape.setPosition(center-shape.getRadius()+(int)((world.ents[i]->getX())*5),center-shape.getRadius()+(int)((world.ents[i]->getY())*5));
+					win->draw(shape);
 				}
 			}
+		}
 		sf::CircleShape shape(40);
 		shape.setFillColor(sf::Color::Transparent);
 		shape.setOutlineThickness(1);
